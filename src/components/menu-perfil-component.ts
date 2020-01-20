@@ -42,6 +42,9 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
   private _nombre = "";
 
   @property({type: String})
+  private _contrasena = "";
+
+  @property({type: String})
   private _image = "";
 
   static get styles() {
@@ -65,6 +68,7 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
         position:absolute;
         right: 40px; 
         margin:25px auto;
+        z-index: 2;
       }
       .profile-wrapper::after {
         content: '';
@@ -129,7 +133,7 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
         padding: 10px 4px;
       }
       .menu li a {
-        color:#555;
+        color:#ffffff;
       }
       .menu li:hover > a{
         color:#eee;
@@ -147,6 +151,81 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
       .profile:hover .menu {
         display:block;
       }
+
+      
+      .boton_personalizado{
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        color: #ffffff;
+        background-color: #303f9f;
+        border-radius: 6px;
+        border: 1px solid #0D1E52;
+      }
+      .boton_personalizado:hover{
+        color: #ffffff;
+        background-color: #0D1E52;
+      }
+
+
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        
+      }
+      
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        height: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+      }
+
+      .modal-content input[type=text], .modal-content input[type=password] {
+        width: 90%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+      }
+      
+      
+      /* When the inputs get focus, do something */
+      .modal-content input[type=text]:focus, .modal-content input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+      
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      div.center {
+        text-align: center;
+      }
       `
     ];
   }
@@ -154,6 +233,23 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
   protected render() {  
     return html`
     <body style="background-color:grey;">
+    <div class="center">
+    <div id="myForm" class="modal">
+      <div class="modal-content">
+                          
+      <span class="close" @click="${this._closePWX}">&times;</span>
+      <h1><strong>Acceso Datos Personales</strong></h1>
+      <br>
+
+      <label for="psw1"><b>Ingrese Contraseña</b></label>
+      <input type="password" placeholder="Contraseña" id="pw1" name="psw1" required>
+    
+      <button class="boton_personalizado" @click="${this._closePW}">Confirmar</button>
+                            
+      </div>
+    </div>
+    </div>
+
     <ul class="profile-wrapper">
 			<li>
 				<!-- user profile -->
@@ -163,7 +259,7 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
 					
 					<!-- more menu -->
 					<ul class="menu">
-						<li><a href="#" @click="${this._fichaPersonal}">Ficha Personal</a></li>
+						<li @click="${this._fichaPersonal}"><a href="#">Ficha Personal</a></li>
 						<li><a href="#">Plan Académico</a></li>
 						<li><a href="#">Becas</a></li>
             <li><a href="#">Deuda</a></li>
@@ -178,12 +274,28 @@ export class MenuPerfilComponent extends connect(store)(LitElement){
   }
 
   private _fichaPersonal () {
-    this._verperfil = true;
-    store.dispatch(verperfil(this._verperfil));
+    if(this._verperfil==false){
+      (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "block";  
+    }
+  }
+
+  private _closePWX(){
+    (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "none";
+  }
+
+  private _closePW(){
+      if((this.shadowRoot!.getElementById('pw1')! as HTMLInputElement).value==this._contrasena){
+        this._verperfil = true;
+        store.dispatch(verperfil(this._verperfil));
+        (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "none";
+      }else{
+        alert("Contraseña Incorrecta");
+      }
   }
   
   stateChanged(state: RootState) {
     this._nombre = state.perfil!.nombre;
+    this._contrasena = state.perfil!.contrasena;
     this._image = state.perfil!.imagen;
     this._verperfil = state.menu!.verperfil;
   }

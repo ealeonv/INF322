@@ -11,12 +11,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import { Action, ActionCreator } from 'redux';
 export const ACTUALIZAR = 'ACTUALIZAR';
 export const ACTUALIZAR2 = 'ACTUALIZAR2';
+export const ACTUALIZARCONTRASENA = 'ACTUALIZARCONTRASENA';
 
 export interface PerfilActionActualizar extends Action<'ACTUALIZAR'> {pasaporte: string, celular: string};
   
 export interface PerfilActionActualizar2 extends Action<'ACTUALIZAR2'> {direccion: string, comuna: string, telefono: string, region: string};
 
-export type PerfilAction = PerfilActionActualizar | PerfilActionActualizar2;
+export interface PerfilActionActualizarContrasena extends Action<'ACTUALIZARCONTRASENA'> {contrasena: string};
+
+export type PerfilAction = PerfilActionActualizar | PerfilActionActualizar2 | PerfilActionActualizarContrasena;
 
 export const actualizar: ActionCreator<PerfilActionActualizar> = (pasaporte: string, celular: string) => {
   return {
@@ -34,5 +37,12 @@ export const actualizar2: ActionCreator<PerfilActionActualizar2> = (direccion: s
     comuna,
     telefono,
     region
+  };
+};
+
+export const actualizarContrasena: ActionCreator<PerfilActionActualizarContrasena> = (contrasena: string) => {
+  return {
+    type: ACTUALIZARCONTRASENA,
+    contrasena
   };
 };

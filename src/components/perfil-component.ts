@@ -17,18 +17,22 @@ import { store, RootState } from '../store.js';
 
 //Reducers
 import perfil from '../reducers/perfil.js';
+import menu from '../reducers/menu.js';
 
 store.addReducers({
   perfil,
+  menu,
 });
 
 // These are the elements needed by this element.
 
+import {verperfil} from '../actions/menu.js';
+import { actualizar, actualizarContrasena } from '../actions/perfil.js';
+import { actualizar2 } from '../actions/perfil.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
-import { actualizar } from '../actions/perfil.js';
-import { actualizar2 } from '../actions/perfil.js';
+
 
 
 @customElement('perfil-component')
@@ -45,8 +49,12 @@ export class PerfilComponent extends connect(store)(LitElement){
   @property({type: Boolean})
   private _panel5: boolean = false;
 
+  @property({type: Boolean})
+  private _verperfil: boolean = true;
+
   //Datos personales
   @property({type: String})
+  private _contrasena ="";
   private _nombre = "";
   private _image = "";
   private _rut = "";
@@ -90,8 +98,12 @@ export class PerfilComponent extends connect(store)(LitElement){
 
       .scrollable2 {
         height: 600px; 
+        top: 120px;
+        left: 10%;
         overflow-y: auto;
         scrollbar-width: none;
+        position: absolute;
+        z-index: 1;
       }
 
       .block1 { 
@@ -118,13 +130,14 @@ export class PerfilComponent extends connect(store)(LitElement){
         margin-bottom: 30px;
         margin-left: 0px;
         margin-right: 0px;
+        border-radius: 5px 5px 5px 5px;
         border: 1px solid #000000;
       }
 
       hr.myhrline{
         margin-top: 0;
         margin-bottom: 0px;
-        background: 
+        
       }
 
       .img-top{
@@ -196,6 +209,7 @@ export class PerfilComponent extends connect(store)(LitElement){
       .value{
         color:#0066ff;
       }
+      
       .editable:target{
         readonly: false;
       }
@@ -207,6 +221,115 @@ export class PerfilComponent extends connect(store)(LitElement){
         border: 2px solid #000000;
       }
 
+
+      .boton_personalizado{
+        text-decoration: none;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        color: #ffffff;
+        background-color: #303f9f;
+        border-radius: 6px;
+        border: 1px solid #0D1E52;
+      }
+      .boton_personalizado:hover{
+        color: #ffffff;
+        background-color: #0D1E52;
+      }
+
+      div.center {
+        text-align: center;
+      }
+
+      .boton_personalizado2{
+        text-decoration: none;
+        padding: 20px;
+        font-weight: 600;
+        font-size: 25px;
+        color: #ffffff;
+        background-color: #ffa726;
+        border-radius: 6px;
+        border: 1px solid #000000 ;
+        width: 100%;
+      }
+      .boton_personalizado2:hover{
+        color: #ffffff;
+        background-color: #fb8c00 ;
+      }
+
+      .imagen{
+        width:230px;
+        display:inline;
+        float:left;
+        border:1px solid #111;
+        border-radius:50%;
+        position: static;
+        max-width: 100%
+      }
+      input{
+        border-radius: 5px;
+      }
+
+
+
+
+
+      
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        
+      }
+      
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        height: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+      }
+
+      .modal-content input[type=text], .modal-content input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+      }
+      
+      
+      /* When the inputs get focus, do something */
+      .modal-content input[type=text]:focus, .modal-content input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+      
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
       `
     ];
   }
@@ -220,7 +343,8 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = false;
-
+    }else{
+      this._panel1 = false;
     }
   }
 
@@ -233,6 +357,8 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = false;
+    }else{
+      this._panel2 = false;
     }
   }
   _logIn3 () {
@@ -243,6 +369,8 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = true;
       this._panel4 = false;
       this._panel5 = false;
+    }else{
+      this._panel3 = false;
     }
   }
   _logIn4 () {
@@ -253,6 +381,8 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = true;
       this._panel5 = false;
+    }else{
+      this._panel4 = false;
     }
   }
   _logIn5 () {
@@ -263,12 +393,15 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = true;
+    }else{
+      this._panel5 = false;
     }
   }
 
   protected render() {  
     return html`
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -286,11 +419,12 @@ export class PerfilComponent extends connect(store)(LitElement){
   <div class="scrollable2">
     <div class="container"> 
         <!-- resumt -->
-              <div class="panel panel-default">
-                <div class="block2">
-                <button type="button" class="btn-style" @click="${this._logIn1}"><i class="fa fa-shield fa-rotate-270"></i> Datos personales</button>
+              <br>
+              <button href="#" class="boton_personalizado2" @click="${this._logIn1}">
+                   Datos Personales 
                 <hr class="myhrline"/>
-                </div>
+              </button>
+              <br>
                 ${this._panel1 ? html`
                 <div class="block1">
                     <div class="row">
@@ -317,7 +451,7 @@ export class PerfilComponent extends connect(store)(LitElement){
                               <li class="list-group-item" style="padding: 3px">: <input id="pasaporte" class="editable" value = ${this._pasaporte} autocomplete="on" pattern="[0-9]*" maxlength="12" required></li>
                            </ul>
                         </div>
-                        <div class="col-xs-12 col-sm-2">
+                        <div class="col-xs-12 col-sm-1">
                         </div>
                         <div class="col-xs-12 col-sm-3">
                           <div class='img-top'>
@@ -325,19 +459,45 @@ export class PerfilComponent extends connect(store)(LitElement){
                               <img class="img-circle img-responsive" alt="" src=${this._image}>
                            </figure>
                           </div>
-                          <button type="button" class="btn-style" align="right" @click="${this._actualizar1}"><i class="fa fa-save"></i> Actualizar Datos</button>   
                         </div>
                       </div>
                     </div>
+                    <div class="center">
+                      <button type="button"  class="boton_personalizado"  @click="${this._actualizar1}"> Actualizar Datos</button>
+
+                      <button class="boton_personalizado" @click="${this._cambiarPW}">Cambiar Contraseña</button>
+                      
+                      <div id="myForm" class="modal">
+                          <div class="modal-content">
+                          
+                            <span class="close" @click="${this._closePWX}">&times;</span>
+                            <h1><strong>Cambiar Constraseña</strong></h1>
+                            <br>
+
+                            <label for="psw1"><b>Nueva Contraseña</b></label>
+                            <input type="password" placeholder="Escriba Nueva Contraseña" id="pw1" name="psw1" required>
+                
+                            <label for="psw"><b>Repita Nueva Contraseña</b></label>
+                            <input type="password" placeholder="Escriba Nueva Contraseña"  id="pw2" name="psw" required>
+                            
+                            <button class="boton_personalizado" @click="${this._closePW}">Cambiar Contraseña</button>
+                            
+                            
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                   </div>  
+                  <br>
                       `: html` 
                       `}
-              </div>
-                <div class="panel panel-default">
-                  <div class="block2">
-                  <button type="button" class="btn-style" @click="${this._logIn2}"><i class="fa fa-shield fa-rotate-270"></i> Datos del apoderado</button>
-                  <hr class="myhrline"/>
-                  </div>
+                      <br>
+                        <button href="#" class="boton_personalizado2" @click="${this._logIn2}">
+                          Datos del Apoderado
+                          <hr class="myhrline"/>
+                        </button>
+                      <br>
+                     
                   ${this._panel2 ? html`
                 <div class="block1">
                     <div class="row">
@@ -357,14 +517,16 @@ export class PerfilComponent extends connect(store)(LitElement){
                       </div>
                     </div>
                   </div>
+                  <br>
                     `: html` 
                     `}
-                </div>
-              <div class="panel panel-default">
-                <div class="block2">
-                <button type="button" class="btn-style" @click="${this._logIn3}"><i class="fa fa-shield fa-rotate-270"></i> Dirección del grupo familiar</button>
-                  <hr class="myhrline"/>
-                  </div>
+                    <br>
+                        <button href="#" class="boton_personalizado2" @click="${this._logIn3}">
+                          Dirección del Grupo Familiar
+                          <hr class="myhrline"/>
+                        </button>
+                    <br>
+                    
                   ${this._panel3 ? html`
                   
                 <div class="block1">
@@ -389,15 +551,18 @@ export class PerfilComponent extends connect(store)(LitElement){
                     </div>
                   </div>
                   </div>
+                  <br>
                   `: html` 
                   `}
-              </div>
-              <div class="panel panel-default">
-                <div class="block2">
-                <button type="button" class="btn-style" @click="${this._logIn4}"><i class="fa fa-shield fa-rotate-270"></i> Dirección del periodo académico</button>
-                <hr class="myhrline"/>
-                </div>
+                <br>
+                  <button href="#" class="boton_personalizado2" @click="${this._logIn4}">
+                    Dirección del Periodo Académico
+                    <hr class="myhrline"/>
+                  </button>
+                <br>
+                  
                 ${this._panel4 ? html`
+                
                 <div class="block1">
                   <div class="row">
                     <div class="col-lg-12">
@@ -417,20 +582,23 @@ export class PerfilComponent extends connect(store)(LitElement){
                               <li class="list-group-item" style="padding: 3px">:35 <input id="telefono" class="editable" value = ${this._telefono} autocomplete="on" pattern="[0-9]*" maxlength="20" required></li>
                             </ul>
                       </div>
-                      <div class="col-xs-12 col-sm-3">
-                      <button type="button" class="btn-style" style="margin-top: 150px;" align="right" @click="${this._actualizar2}"><i class="fa fa-save"></i> Actualizar Datos</button> 
-                      </div>
                     </div>
                   </div>
+                  <div class="center">
+                    <button type="button"  class="boton_personalizado"  @click="${this._actualizar2}"> Actualizar Datos</button>
                   </div>
+                </div>
+              </div>
+              <br>
                   `: html` 
                   `}
-              </div>
-              <div class="panel panel-default">
-                <div class="block2">
-                <button type="button" class="btn-style" @click="${this._logIn5}"><i class="fa fa-shield fa-rotate-270"></i> Datos Académicos</button>
-                  <hr class="myhrline"/>
-                  </div>
+                    <br>
+                        <button href="#" class="boton_personalizado2" @click="${this._logIn5}">
+                          Datos Académicos
+                          <hr class="myhrline"/>
+                        </button>
+                      <br>
+                  
                   ${this._panel5 ? html`
                 <div class="block1">
                   <div class='row'>
@@ -476,10 +644,16 @@ export class PerfilComponent extends connect(store)(LitElement){
                     </div>
                   </div>
                   </div>
+                  <br>
                   `: html` 
+                  <br>
                   `}
                 
               </div>
+              <div class="center">
+                <button type="button"  class="boton_personalizado"  @click="${this._menuPrincipal}"> Volver</button>
+              </div>
+              <br>
         <!-- resume -->
     </div>
   </div>
@@ -488,12 +662,15 @@ export class PerfilComponent extends connect(store)(LitElement){
     `;
   }
 
+
   private _actualizar1() {
+      alert("Datos Actualizados Correctamente");
       this._celular=(this.shadowRoot!.getElementById('celular')! as HTMLInputElement).value;
       this._pasaporte=(this.shadowRoot!.getElementById('pasaporte')! as HTMLInputElement).value;
       store.dispatch(actualizar(this._pasaporte,this._celular));
   }
   private _actualizar2(){
+    alert("Datos Actualizados Correctamente");
     this._direccion=(this.shadowRoot!.getElementById('direccion')! as HTMLInputElement).value;
     this._comuna=(this.shadowRoot!.getElementById('comuna')! as HTMLInputElement).value;
     this._region=(this.shadowRoot!.getElementById('region')! as HTMLInputElement).value;
@@ -501,8 +678,34 @@ export class PerfilComponent extends connect(store)(LitElement){
     store.dispatch(actualizar2(this._direccion,this._comuna, this._telefono,this._region));
   }
 
+  private _menuPrincipal () {
+    this._verperfil = false;
+    store.dispatch(verperfil(this._verperfil));
+  }
+
+  private _cambiarPW(){
+    (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "block";
+  }
+
+  private _closePWX(){
+    (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "none";
+  }
+
+  private _closePW(){
+      if((this.shadowRoot!.getElementById('pw1')! as HTMLInputElement).value==
+      (this.shadowRoot!.getElementById('pw2')! as HTMLInputElement).value){
+        this._contrasena=(this.shadowRoot!.getElementById('pw1')! as HTMLInputElement).value;
+        store.dispatch(actualizarContrasena(this._contrasena));
+        (this.shadowRoot!.getElementById("myForm") as HTMLInputElement).style.display = "none";
+        alert("Contraseña Actualizada Correctamente");
+      }else{
+        alert("Contraseña Inválida");
+      }
+  }
 
   stateChanged(state: RootState) {
+    this._contrasena = state.perfil!.contrasena;
+
     this._nombre = state.perfil!.nombre;
     this._image = state.perfil!.imagen;
     this._rut = state.perfil!.rut;
@@ -536,6 +739,8 @@ export class PerfilComponent extends connect(store)(LitElement){
     this._planCarrera = state.perfil!.planCarrera;
     this._situacionFinanciera = state.perfil!.situacionFinanciera;
     this._fechaArancel = state.perfil!.fechaArancel;
+
+    this._verperfil = state.menu!.verperfil;
   }
 
 }

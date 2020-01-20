@@ -86,7 +86,7 @@ export class MainPage extends connect(store)(LitElement) {
         #full {
           grid-row: 2;
           grid-column: 1/3;
-          border: 1px dotted orange;
+          
         }
         #logInButton {
           cursor: pointer;

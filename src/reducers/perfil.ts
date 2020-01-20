@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 import { Reducer } from 'redux';
 
-import { ACTUALIZAR, ACTUALIZAR2 } from '../actions/perfil.js';
+import { ACTUALIZAR, ACTUALIZAR2, ACTUALIZARCONTRASENA } from '../actions/perfil.js';
 
 import { RootAction } from '../store.js';
 //import { RootAction } from '../store.js';
@@ -18,6 +18,7 @@ import { RootAction } from '../store.js';
 
 export interface PerfilState {
   nickmane:string;
+  contrasena:string;
 
   //Datos personales Fijo
   nombre: string;
@@ -63,6 +64,7 @@ export interface PerfilState {
 
 const INITIAL_STATE: PerfilState = {
   nickmane:"Felipe",
+  contrasena:"123momiaes",
 
   //Datos personales Fijo
   nombre: "Felipe Encalada",
@@ -123,6 +125,12 @@ const perfil: Reducer<PerfilState, RootAction> = (state = INITIAL_STATE, action)
         telefono: action.telefono,
         region: action.region
       };
+      case ACTUALIZARCONTRASENA:
+        return{
+          ...state,
+          //Direccion del periodo academico Variable
+          contrasena: action.contrasena
+        };
     default:
       return state;
   }

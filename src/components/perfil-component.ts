@@ -576,9 +576,9 @@ export class PerfilComponent extends connect(store)(LitElement){
                       </div>
                       <div class="col-xs-12 col-sm-6">
                             <ul class="list-group">
-                              <li class="list-group-item" style="padding: 3px">: <input id="direccion" class="editable" value = ${this._region} autocomplete="on" maxlength="20" required></li>
+                              <li class="list-group-item" style="padding: 3px">: <input id="region" class="editable" value = ${this._region} autocomplete="on" maxlength="20" required></li>
                               <li class="list-group-item" style="padding: 3px">: <input id="comuna" class="editable" value = ${this._comuna} autocomplete="on" maxlength="20" required></li>
-                              <li class="list-group-item" style="padding: 3px">: <input id="region" class="editable" value = ${this._direccion} autocomplete="on" maxlength="20" required></li>
+                              <li class="list-group-item" style="padding: 3px">: <input id="direccion" class="editable" value = ${this._direccion} autocomplete="on" maxlength="20" required></li>
                               <li class="list-group-item" style="padding: 3px">:35 <input id="telefono" class="editable" value = ${this._telefono} autocomplete="on" pattern="[0-9]*" maxlength="20" required></li>
                             </ul>
                       </div>

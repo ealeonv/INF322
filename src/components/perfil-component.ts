@@ -28,7 +28,6 @@ store.addReducers({
 
 import {verperfil} from '../actions/menu.js';
 import { actualizar, actualizarContrasena } from '../actions/perfil.js';
-import { actualizar2 } from '../actions/perfil.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -109,9 +108,8 @@ export class PerfilComponent extends connect(store)(LitElement){
       .block1 { 
         background-color: #FDDD92; 
         padding: 10px;
-        border-radius: 11px 11px 11px 11px;
-        -moz-border-radius: 11px 11px 11px 11px;
-        -webkit-border-radius: 11px 11px 11px 11px;
+        border-bottom-right-radius: 0.5em;
+        border-bottom-left-radius : 0.5em;
         border: 1px solid #000000;
       }
 
@@ -351,7 +349,6 @@ export class PerfilComponent extends connect(store)(LitElement){
   _logIn2 () {
     if(this._panel2 == false)
     { 
-
       this._panel1 = false;
       this._panel2 = true;
       this._panel3 = false;
@@ -442,13 +439,13 @@ export class PerfilComponent extends connect(store)(LitElement){
                         </div>
                         <div class="col-xs-12 col-sm-4">
                            <ul class="list-group">
-                              <li class="list-group-item value"><b>: ${this._nombre}</b></li>
-                              <li class="list-group-item value"><b>: ${this._rut}</b></li>
-                              <li class="list-group-item value"><b>: ${this._fechaNacimiento}</b></li>
-                              <li class="list-group-item value"><b>: ${this._nacionalidad}</b></li>
-                              <li class="list-group-item value"><b>: ${this._email}</b></li>
-                              <li class="list-group-item" style="padding: 3px">: 9 <input id ="celular" value = ${this._celular}></li>
-                              <li class="list-group-item" style="padding: 3px">: <input id="pasaporte" class="editable" value = ${this._pasaporte} autocomplete="on" pattern="[0-9]*" maxlength="12" required></li>
+                              <li class="list-group-item value"><b>${this._nombre}</b></li>
+                              <li class="list-group-item value"><b>${this._rut}</b></li>
+                              <li class="list-group-item value"><b>${this._fechaNacimiento}</b></li>
+                              <li class="list-group-item value"><b>${this._nacionalidad}</b></li>
+                              <li class="list-group-item value"><b>${this._email}</b></li>
+                              <li class="list-group-item" style="padding: 3px">9 <input id ="celular" value = ${this._celular}></li>
+                              <li class="list-group-item" style="padding: 3px"><input id="pasaporte" class="editable" value = ${this._pasaporte} autocomplete="on" pattern="[0-9]*" maxlength="12" required></li>
                            </ul>
                         </div>
                         <div class="col-xs-12 col-sm-1">
@@ -510,8 +507,8 @@ export class PerfilComponent extends connect(store)(LitElement){
                         </div>
                         <div class="col-xs-12 col-sm-6">
                            <ul class="list-group">
-                              <li class="list-group-item value"><b>: ${this._nombreApoderado}</b></li>
-                              <li class="list-group-item value"><b>: ${this._rutApoderado}</b></li>
+                              <li class="list-group-item value"><b>${this._nombreApoderado}</b></li>
+                              <li class="list-group-item value"><b>${this._rutApoderado}</b></li>
                            </ul>
                         </div>
                       </div>
@@ -542,10 +539,10 @@ export class PerfilComponent extends connect(store)(LitElement){
                       </div>
                       <div class="col-xs-12 col-sm-6">
                             <ul class="list-group">
-                               <li class="list-group-item value"><b>: ${this._regionFamiliar}</b></li>
-                               <li class="list-group-item value"><b>: ${this._comunaFamiliar}</b></li>
-                               <li class="list-group-item value"><b>: ${this._direccionFamiliar}</b></li>
-                               <li class="list-group-item value"><b>: ${this._telefonoFamiliar}</b></li>
+                               <li class="list-group-item value"><b>${this._regionFamiliar}</b></li>
+                               <li class="list-group-item value"><b>${this._comunaFamiliar}</b></li>
+                               <li class="list-group-item value"><b>${this._direccionFamiliar}</b></li>
+                               <li class="list-group-item value"><b>${this._telefonoFamiliar}</b></li>
                             </ul>
                       </div>
                     </div>
@@ -574,18 +571,15 @@ export class PerfilComponent extends connect(store)(LitElement){
                               <li class="list-group-item"><b>Télefono</b></li>
                             </ul>
                       </div>
-                      <div class="col-xs-12 col-sm-6">
-                            <ul class="list-group">
-                              <li class="list-group-item" style="padding: 3px">: <input id="region" class="editable" value = ${this._region} autocomplete="on" maxlength="20" required></li>
-                              <li class="list-group-item" style="padding: 3px">: <input id="comuna" class="editable" value = ${this._comuna} autocomplete="on" maxlength="20" required></li>
-                              <li class="list-group-item" style="padding: 3px">: <input id="direccion" class="editable" value = ${this._direccion} autocomplete="on" maxlength="20" required></li>
-                              <li class="list-group-item" style="padding: 3px">:35 <input id="telefono" class="editable" value = ${this._telefono} autocomplete="on" pattern="[0-9]*" maxlength="20" required></li>
-                            </ul>
+                      <div class="col-xs-12 col-sm-4">
+                        <ul class="list-group">
+                          <li class="list-group-item value"><b>${this._region} </b></li>
+                          <li class="list-group-item value"><b>${this._comuna} </b></li>
+                          <li class="list-group-item value"><b>${this._direccion} </b></li>
+                          <li class="list-group-item value"><b>(35) ${this._telefono} </b></li>
+                        </ul>
                       </div>
                     </div>
-                  </div>
-                  <div class="center">
-                    <button type="button"  class="boton_personalizado"  @click="${this._actualizar2}"> Actualizar Datos</button>
                   </div>
                 </div>
               </div>
@@ -615,12 +609,12 @@ export class PerfilComponent extends connect(store)(LitElement){
                       </div>
                       <div class="col-xs-12 col-sm-4">
                         <ul class="list-group">
-                          <li class="list-group-item value"><b>: ${this._carrera} </b></li>
-                          <li class="list-group-item value"><b>: ${this._situacionAcademica} </b></li>
-                          <li class="list-group-item value"><b>: ${this._prioridad} </b></li>
-                          <li class="list-group-item value"><b>: ${this._matricula} </b></li>
-                          <li class="list-group-item value"><b>: ${this._ingreso}</b></li>
-                          <li class="list-group-item value"><b>: ${this._estado}</b></li>
+                          <li class="list-group-item value"><b>${this._carrera} </b></li>
+                          <li class="list-group-item value"><b>${this._situacionAcademica} </b></li>
+                          <li class="list-group-item value"><b>${this._prioridad} </b></li>
+                          <li class="list-group-item value"><b>${this._matricula} </b></li>
+                          <li class="list-group-item value"><b>${this._ingreso}</b></li>
+                          <li class="list-group-item value"><b>${this._estado}</b></li>
                         </ul>
                       </div>
                       <div class="col-xs-12 col-sm-2">
@@ -634,11 +628,11 @@ export class PerfilComponent extends connect(store)(LitElement){
                       </div>
                       <div class="col-xs-12 col-sm-4">
                         <ul class="list-group">
-                          <li class="list-group-item value"><b>: ${this._rol} </b></li>
-                          <li class="list-group-item value"><b>: ${this._ingresoAno} </b></li>
-                          <li class="list-group-item value"><b>: ${this._planCarrera} </b></li>
-                          <li class="list-group-item value"><b>: ${this._situacionFinanciera} </b></li>
-                          <li class="list-group-item value"><b>: ${this._fechaArancel} </b></li>
+                          <li class="list-group-item value"><b>${this._rol}</b></li>
+                          <li class="list-group-item value"><b>${this._ingresoAno} </b></li>
+                          <li class="list-group-item value"><b>${this._planCarrera} </b></li>
+                          <li class="list-group-item value"><b>${this._situacionFinanciera} </b></li>
+                          <li class="list-group-item value"><b>${this._fechaArancel} </b></li>
                         </ul>
                       </div>
                     </div>
@@ -668,14 +662,6 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._celular=(this.shadowRoot!.getElementById('celular')! as HTMLInputElement).value;
       this._pasaporte=(this.shadowRoot!.getElementById('pasaporte')! as HTMLInputElement).value;
       store.dispatch(actualizar(this._pasaporte,this._celular));
-  }
-  private _actualizar2(){
-    alert("Datos Actualizados Correctamente");
-    this._direccion=(this.shadowRoot!.getElementById('direccion')! as HTMLInputElement).value;
-    this._comuna=(this.shadowRoot!.getElementById('comuna')! as HTMLInputElement).value;
-    this._region=(this.shadowRoot!.getElementById('region')! as HTMLInputElement).value;
-    this._telefono=(this.shadowRoot!.getElementById('telefono')! as HTMLInputElement).value;
-    store.dispatch(actualizar2(this._direccion,this._comuna, this._telefono,this._region));
   }
 
   private _menuPrincipal () {

@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 import { Reducer } from 'redux';
 
-import { ACTUALIZAR, ACTUALIZAR2, ACTUALIZARCONTRASENA } from '../actions/perfil.js';
+import { ACTUALIZAR, ACTUALIZARCONTRASENA } from '../actions/perfil.js';
 
 import { RootAction } from '../store.js';
 //import { RootAction } from '../store.js';
@@ -91,7 +91,7 @@ const INITIAL_STATE: PerfilState = {
   direccion: "12 norte 2507",
   comuna: "Viña del mar",
   telefono: "123",
-  region: "Valparaiso",
+  region: "Valparaíso",
 
   //Datos academico Fijo
   carrera:"Ing. Civil Informática, Casa Central Valparaíso (Diurno)",
@@ -100,7 +100,7 @@ const INITIAL_STATE: PerfilState = {
   matricula:"2019-2",
   ingreso:" 2020",
   estado:"Vigente",
-  rol:": 202073001-1",
+  rol:"202073001-1",
   ingresoAno:"2020",
   planCarrera:"7313",
   situacionFinanciera:"Al día",
@@ -115,15 +115,6 @@ const perfil: Reducer<PerfilState, RootAction> = (state = INITIAL_STATE, action)
         //Datos personales Variable
         pasaporte: action.pasaporte,
         celular: action.celular,
-      };
-    case ACTUALIZAR2:
-      return{
-        ...state,
-        //Direccion del periodo academico Variable
-        direccion: action.direccion,
-        comuna: action.comuna,
-        telefono: action.telefono,
-        region: action.region
       };
       case ACTUALIZARCONTRASENA:
         return{

@@ -108,10 +108,11 @@ export class PerfilComponent extends connect(store)(LitElement){
       .block1 { 
         background-color: #FDDD92; 
         padding: 10px;
-        border-bottom-right-radius: 0.5em;
-        border-bottom-left-radius : 0.5em;
+        border-bottom-right-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
         border: 1px solid #000000;
       }
+
 
       .block2 {
         background-color: #FABA25; 
@@ -252,7 +253,24 @@ export class PerfilComponent extends connect(store)(LitElement){
       }
       .boton_personalizado2:hover{
         color: #ffffff;
-        background-color: #fb8c00 ;
+        background-color: #fb8c00;
+      }
+
+      .boton_personalizado3{
+        text-decoration: none;
+        padding: 20px;
+        font-weight: 600;
+        font-size: 25px;
+        color: #ffffff;
+        background-color: #ffa726;
+        border-top-right-radius: 0.25em;
+        border-top-left-radius: 0.25em;
+        border: 1px solid #000000 ;
+        width: 100%;
+      }
+      .boton_personalizado2:hover{
+        color: #ffffff;
+        background-color: #fb8c00;
       }
 
       .imagen{
@@ -341,8 +359,20 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = false;
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }else{
       this._panel1 = false;
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }
   }
 
@@ -354,8 +384,20 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = false;
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }else{
       this._panel2 = false;
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }
   }
   _logIn3 () {
@@ -366,8 +408,20 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = true;
       this._panel4 = false;
       this._panel5 = false;
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }else{
       this._panel3 = false;
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }
   }
   _logIn4 () {
@@ -378,8 +432,20 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = true;
       this._panel5 = false;
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }else{
       this._panel4 = false;
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }
   }
   _logIn5 () {
@@ -390,12 +456,25 @@ export class PerfilComponent extends connect(store)(LitElement){
       this._panel3 = false;
       this._panel4 = false;
       this._panel5 = true;
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view2") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view3") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view4") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view1") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }else{
       this._panel5 = false;
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomLeftRadius="0.25em";
+      (this.shadowRoot!.getElementById("view5") as HTMLInputElement).style.webkitBorderBottomRightRadius="0.25em";
     }
   }
 
   protected render() {  
+    
     return html`
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -417,7 +496,7 @@ export class PerfilComponent extends connect(store)(LitElement){
     <div class="container"> 
         <!-- resumt -->
               <br>
-              <button href="#" class="boton_personalizado2" @click="${this._logIn1}">
+              <button href="#" id="view1" class="boton_personalizado3" @click="${this._logIn1}">
                    Datos Personales 
                 <hr class="myhrline"/>
               </button>
@@ -489,7 +568,7 @@ export class PerfilComponent extends connect(store)(LitElement){
                       `: html` 
                       `}
                       <br>
-                        <button href="#" class="boton_personalizado2" @click="${this._logIn2}">
+                        <button href="#" id="view2" class="boton_personalizado2" @click="${this._logIn2}">
                           Datos del Apoderado
                           <hr class="myhrline"/>
                         </button>
@@ -518,7 +597,7 @@ export class PerfilComponent extends connect(store)(LitElement){
                     `: html` 
                     `}
                     <br>
-                        <button href="#" class="boton_personalizado2" @click="${this._logIn3}">
+                        <button href="#" id="view3" class="boton_personalizado2" @click="${this._logIn3}">
                           Dirección del Grupo Familiar
                           <hr class="myhrline"/>
                         </button>
@@ -552,7 +631,7 @@ export class PerfilComponent extends connect(store)(LitElement){
                   `: html` 
                   `}
                 <br>
-                  <button href="#" class="boton_personalizado2" @click="${this._logIn4}">
+                  <button href="#" id="view4" class="boton_personalizado2" @click="${this._logIn4}">
                     Dirección del Periodo Académico
                     <hr class="myhrline"/>
                   </button>
@@ -587,7 +666,7 @@ export class PerfilComponent extends connect(store)(LitElement){
                   `: html` 
                   `}
                     <br>
-                        <button href="#" class="boton_personalizado2" @click="${this._logIn5}">
+                        <button href="#" id="view5" class="boton_personalizado2" @click="${this._logIn5}">
                           Datos Académicos
                           <hr class="myhrline"/>
                         </button>
